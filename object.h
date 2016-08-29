@@ -1,25 +1,29 @@
-#ifndef _OBJECT_H
-#define _OBJECT_H
+#ifndef _SHAPE_H
+#define _SHAPE_H
 
 #include "math.h"
 #include "vect.h"
 #include "color.h"
 
-class Object {	
+class Shape {	
 	public:
 	
-	Object ();
+	Shape ();
 
 	//method man
-	Color getObjectColor () { return Color (0.0, 0.0, 0.0, 0); }
+	virtual Color getColor () { return Color (0.0, 0.0, 0.0, 0); }
 
-	double findIntersection(Ray ray) {
+	virtual Vect getNormalAt(Vect intersection_position) {
+		return Vect (0, 0, 0);
+		}
+
+	virtual double findIntersection(Ray ray) {
 		return 0;
 	}
 
 };
 
-Object::Object () {}
+Shape::Shape () {}
 
 
 #endif

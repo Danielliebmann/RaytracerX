@@ -3,10 +3,10 @@
 
 #include "math.h"
 #include "vect.h"
-#include "object.h"
+#include "shape.h"
 #include "color.h"
 
-class Sphere : public Object {
+class Sphere : public Shape {
 	Vect center;
 	double radius;
 	Color color;
@@ -20,7 +20,7 @@ class Sphere : public Object {
 	//method man
 	Vect getSphereCenter () { return center; }
 	double getSphereRadius () { return radius; }
-	Color getSphereColor () { return color; }
+	virtual Color getColor () { return color; }
 
 	double findIntersection(Ray ray) {
 
@@ -29,7 +29,7 @@ class Sphere : public Object {
 		Vect normal_Vect = point.vectAdd(center.negative()).normalize();
 		return normal_Vect;
 	}
-	double findIntersection(Ray ray) {
+	virtual double findIntersection(Ray ray) {
 		Vect ray_origin = ray.getRayOrigin();
 		double ray_origin_x = ray_origin.getVectX();
 		double ray_origin_y = ray_origin.getVectY();

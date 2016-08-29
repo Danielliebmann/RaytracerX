@@ -3,12 +3,12 @@
 
 #include "math.h"
 #include "vect.h"
-#include "object.h"
+#include "shape.h"
 #include "color.h"
 
 //Hier bekommen wir die "Normale" des Punktes, den wir schneiden (Intersect). Der Normalvektor beim intersect ist der Normalvektor der Ebene (Plane)
 
-class Plane : public Object {
+class Plane : public Shape {
 	Vect normal;
 	double distance;
 	Color color;
@@ -22,13 +22,13 @@ class Plane : public Object {
 	//method man
 	Vect getPlaneNormal () { return normal; }
 	double getPlaneDistance () { return distance; }
-	Color getPlaneColor () { return color; }
+	virtual Color getColor () { return color; }
 
 	Vect getNormalAt(Vect point) {
 		return normal;
 	}
 	//double = distance ray origin to point of intersection
-	double findIntersection(Ray ray) {
+	virtual double findIntersection(Ray ray) {
 		Vect ray_direction = ray.getRayDirection();
 	
 	double a = ray_direction.dotProduct(normal);
